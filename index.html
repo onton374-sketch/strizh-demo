@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>СТРИЖ — барбершоп в Твери</title>
+<meta name="description" content="Барбершоп СТРИЖ: стрижки, бороды, честные цены и немного философии о волосах.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1B1914">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="СТРИЖ">
+<meta property="og:title" content="СТРИЖ — барбершоп в Твери">
+<meta property="og:description" content="Стрижки, бороды, честные цены и немного философии о волосах.">
+<meta property="og:image" content="img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=PT+Sans:wght@400;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1914;          /* тёплый графит */
+    --ink-2:#24211B;
+    --bone:#EDE6D8;         /* тёплый текст */
+    --bone-dim:#B7AF9F;
+    --brass:#C09A4C;        /* латунь */
+    --pole-red:#A63A2E;     /* полоса шеста — красная */
+    --pole-blue:#3D6B93;    /* полоса шеста — синяя */
+    --rule:#3A362D;
+    --display:"Oswald",sans-serif;
+    --body:"PT Sans",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);
+    color:var(--bone);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.55;
+  }
+  ::selection{background:var(--brass);color:var(--ink)}
+
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+  h1,h2,h3,.wordmark{font-family:var(--display);font-weight:600;letter-spacing:.01em;line-height:1.08}
+  h2{font-size:clamp(26px,4vw,40px);text-transform:uppercase}
+  a{color:var(--brass)}
+
+  /* ── Верхняя плашка ─────────────────────────── */
+  .top{
+    position:sticky;top:0;z-index:20;
+    background:rgba(27,25,20,.92);backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--rule);
+  }
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--bone)}
+  .brand .pole-ico{
+    width:14px;height:22px;border-radius:7px;flex:none;
+    background:repeating-linear-gradient(-45deg,var(--bone) 0 5px,var(--pole-red) 5px 10px,var(--bone) 10px 15px,var(--pole-blue) 15px 20px);
+  }
+  .wordmark{font-size:22px;letter-spacing:.14em;text-transform:uppercase}
+  .top-right{display:flex;gap:18px;align-items:center;font-size:15px}
+  .top-right a{color:var(--bone);text-decoration:none}
+  .top-right a:hover{color:var(--brass)}
+  .top-right .phone{font-family:var(--display);letter-spacing:.04em}
+
+  /* ── Хиро ───────────────────────────────── */
+  .hero{padding:84px 0 64px;position:relative;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.25fr .9fr;gap:48px;align-items:end}
+  .kicker{
+    font-family:var(--display);font-weight:400;font-size:15px;
+    color:var(--bone-dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:clamp(48px,8.5vw,104px);
+    text-transform:uppercase;letter-spacing:.005em;
+    max-width:12ch;
+  }
+  .hero h1 .quad{
+    color:transparent;
+    -webkit-text-stroke:2px var(--brass);
+    text-shadow:none;
+  }
+  @supports not (-webkit-text-stroke:2px black){
+    .hero h1 .quad{color:var(--brass)}
+  }
+  .hero p.sub{margin-top:20px;max-width:52ch;color:var(--bone-dim);font-size:19px}
+  .hero-cta{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;font-family:var(--display);font-size:17px;letter-spacing:.08em;
+    text-transform:uppercase;text-decoration:none;padding:13px 26px;
+  }
+  .btn-solid{background:var(--brass);color:var(--ink)}
+  .btn-solid:hover{background:var(--bone)}
+  .btn-ghost{border:1px solid var(--rule);color:var(--bone)}
+  .btn-ghost:hover{border-color:var(--brass);color:var(--brass)}
+  .btn:focus-visible,a:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+  .scissors{
+    justify-self:center;text-align:center;
+  }
+  .scissors .ring{
+    width:min(300px,60vw);aspect-ratio:1;border-radius:50%;
+    border:1px solid var(--rule);
+    display:grid;place-items:center;position:relative;
+  }
+  .scissors .ring::after{
+    content:"";position:absolute;inset:14px;border-radius:50%;
+    border:1px dashed var(--rule);
+  }
+  .scissors svg{width:132px;height:132px;stroke:var(--brass);fill:none;stroke-width:.7;stroke-linecap:round;stroke-linejoin:round}
+
+  /* ── Лента-разделитель (бегущая строка) ───── */
+  .ribbon{
+    border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+    background:var(--ink-2);overflow:hidden;padding:10px 0;
+  }
+  .ribbon-track{
+    display:flex;gap:0;white-space:nowrap;
+    font-family:var(--display);font-size:20px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--bone-dim);
+    animation:slide 28s linear infinite;
+  }
+  .ribbon-track span{padding:0 18px;flex:none}
+  .ribbon-track .sc{color:var(--brass)}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){
+    .ribbon-track{animation:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* ── Секции ─────────────────────────────── */
+  section{padding:78px 0}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:36px}
+  .sec-head .num{
+    font-family:var(--display);font-weight:400;font-size:15px;
+    color:var(--brass);letter-spacing:.1em;flex:none;
+  }
+  .sec-head h2{border-left:3px solid var(--pole-red);padding-left:18px}
+
+  /* Прайс — как меню в пабе*/
+  .menu{
+    columns:2;column-gap:64px;font-size:18px;
+  }
+  .menu .item{
+    break-inside:avoid;display:flex;align-items:baseline;gap:8px;
+    padding:13px 0;border-bottom:1px dashed var(--rule);
+  }
+  .menu .item .name{white-space:nowrap}
+  .menu .dots{flex:1;border-bottom:1px dotted var(--bone-dim);transform:translateY(-4px)}
+  .menu .price{font-family:var(--display);font-size:19px;color:var(--brass);white-space:nowrap}
+  .menu .note{
+    break-inside:avoid;margin-top:22px;color:var(--bone-dim);font-size:15px;
+  }
+  .menu .item .name b{color:var(--bone)}
+
+  /* Команда */
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .barber{
+    border:1px solid var(--rule);padding:22px 20px;background:var(--ink-2);
+  }
+  .barber .plate{
+    height:190px;margin-bottom:18px;position:relative;overflow:hidden;
+    background:
+      repeating-linear-gradient(-45deg,transparent 0 6px,rgba(237,230,216,.03) 6px 12px),
+      var(--ink);
+    border:1px solid var(--rule);
+  }
+  .barber .photo{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.85)}
+  .barber h3{font-size:22px;text-transform:uppercase;letter-spacing:.06em}
+  .barber .role{color:var(--brass);font-size:15px;margin:2px 0 12px}
+  .barber p{color:var(--bone-dim);font-size:15.5px}
+
+  /* Галерея */
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .shot{
+    aspect-ratio:4/5;position:relative;overflow:hidden;border:1px solid var(--rule);
+    background:repeating-linear-gradient(45deg,var(--ink-2) 0 12px,#211E18 12px 24px);
+  }
+  .shot .cap{
+    position:absolute;inset:auto 0 0 0;padding:8px 12px;
+    background:rgba(27,25,20,.85);
+    font-family:var(--display);font-size:14px;letter-spacing:.08em;text-transform:uppercase;
+    transform:translateY(100%);transition:transform .25s ease;
+  }
+  .shot:hover .cap,.shot:focus-within .cap{transform:none}
+  .shot.g1{background:linear-gradient(160deg,#2A2620,var(--ink))}
+  .shot .ph{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.9)}
+
+  /* Шутки и факты — «буфет» */
+  .buffet{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}
+  .ticket{
+    border:1px solid var(--rule);background:var(--ink-2);padding:26px 24px;
+    position:relative;display:flex;flex-direction:column;gap:14px;
+  }
+  .ticket::before{
+    content:"";position:absolute;left:14px;right:14px;top:30px;
+    border-top:1px dashed var(--rule);
+  }
+  .ticket .tag{
+    font-family:var(--display);font-size:14px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--bone-dim);
+  }
+  .ticket.red .tag{color:var(--pole-red)}
+  .ticket.blue .tag{color:var(--pole-blue)}
+  .ticket .quote{
+    font-family:"Caveat",cursive;font-weight:600;
+    font-size:clamp(24px,3vw,31px);line-height:1.25;flex:1;
+  }
+  .ticket button{
+    align-self:start;background:none;border:1px solid var(--brass);
+    color:var(--brass);font-family:var(--display);font-size:15px;letter-spacing:.1em;
+    text-transform:uppercase;padding:8px 18px;cursor:pointer;
+  }
+  .ticket button:hover{background:var(--brass);color:var(--ink)}
+  .ticket button:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+  .ticket .counter{color:var(--bone-dim);font-size:13px;align-self:flex-end}
+
+  /* Контакты */
+  .contacts{background:var(--ink-2);border-top:1px solid var(--rule)}
+  .contacts .grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px}
+  .contacts dl{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;font-size:18px}
+  .contacts dt{color:var(--bone-dim);font-family:var(--display);letter-spacing:.06em;text-transform:uppercase;font-size:14px;padding-top:4px}
+  .contacts dd{margin:0}
+  .hours{border-left:3px solid var(--pole-blue);padding-left:18px;color:var(--bone-dim)}
+  footer{padding:26px 0;color:var(--bone-dim);font-size:14px;border-top:1px solid var(--rule)}
+  footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  /* ── Анимация ────────────────────────────── */
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .65s ease,transform .65s ease}
+    .reveal.in{opacity:1;transform:none}
+    .hero-copy{animation:rise .7s ease both}
+    @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  }
+  .shot .ph{transition:transform .5s ease}
+  .shot:hover .ph{transform:scale(1.05)}
+  @media (prefers-reduced-motion:reduce){
+    .shot:hover .ph{transform:none}
+  }
+
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr}
+    .scissors{display:none}
+    .menu{columns:1}
+    .team{grid-template-columns:1fr 1fr}
+    .buffet,.contacts .grid,.gallery{grid-template-columns:1fr}
+    .top-right .phone{display:none}
+    section{padding:56px 0}
+  }
+  @media (max-width:520px){
+    .team{grid-template-columns:1fr}
+    /* длинные позиции прайса не влезают в одну строку — убираем точечный лидер и переносим название */
+    .menu .item{display:grid;grid-template-columns:1fr auto;column-gap:14px;row-gap:2px;align-items:baseline}
+    .menu .item .name{white-space:normal}
+    .menu .dots{display:none}
+    .menu .item .price{justify-self:end}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Барбершоп СТРИЖ, на главную">
+      <span class="pole-ico" aria-hidden="true"></span>
+      <span class="wordmark">Стриж</span>
+    </a>
+    <nav class="top-right" aria-label="Связь">
+      <a href="#цены">Цены</a>
+      <a href="#команда">Барберы</a>
+      <a href="tel:+79001234567" class="phone">+7 900 123-45-67</a>
+      <a href="https://t.me/strizh_barber" rel="noopener">Telegram</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" aria-label="О барбершопе">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="kicker">Барбершоп · Тверь · с 2016 года</p>
+        <h1>Стрижка — это <span class="quad">форма</span>, а не суета</h1>
+        <p class="sub">Мы работаем с 1876 года — шутка, с 2016-го. Но философия та же: волосы растут быстрее, чем ты передумываешь. Поэтому не откладывай форму головы на понедельник.</p>
+        <div class="hero-cta">
+          <a class="btn btn-solid" href="tel:+79001234567">Позвонить в кресло</a>
+          <a class="btn btn-ghost" href="#цены">Смотреть прайс</a>
+        </div>
+      </div>
+      <div class="scissors" aria-hidden="true">
+        <div class="ring">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="6" cy="6" r="3"/>
+            <path d="M8.12 8.12 12 12"/>
+            <path d="M20 4 8.12 15.88"/>
+            <circle cx="6" cy="18" r="3"/>
+            <path d="M14.8 14.8 20 20"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ribbon" aria-hidden="true">
+    <div class="ribbon-track">
+      <span>Стриж</span><span class="sc">✂</span><span>борода</span><span class="sc">✂</span><span>fade</span><span class="sc">✂</span><span>старая школа</span><span class="sc">✂</span>
+      <span>Стриж</span><span class="sc">✂</span><span>борода</span><span class="sc">✂</span><span>fade</span><span class="sc">✂</span><span>старая школа</span><span class="sc">✂</span>
+    </div>
+  </div>
+
+  <section id="цены" aria-label="Услуги и цены">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="num">01</span><h2>Прайс без мелкого шрифта</h2></div>
+      <div class="menu reveal">
+        <div class="item"><span class="name">Мужская стрижка</span><span class="dots"></span><span class="price">1 500 ₽</span></div>
+        <div class="item"><span class="name">Fade / виски под ноль</span><span class="dots"></span><span class="price">1 700 ₽</span></div>
+        <div class="item"><span class="name">Оформление бороды</span><span class="dots"></span><span class="price">900 ₽</span></div>
+        <div class="item"><span class="name">Стрижка + борода</span><span class="dots"></span><span class="price">2 200 ₽</span></div>
+        <div class="item"><span class="name">Стрижка машинкой</span><span class="dots"></span><span class="price">800 ₽</span></div>
+        <div class="item"><span class="name">Старая школа (ножницы)</span><span class="dots"></span><span class="price">1 900 ₽</span></div>
+        <div class="item"><span class="name">Королевское бритьё опасной бритвой</span><span class="dots"></span><span class="price">1 400 ₽</span></div>
+        <div class="item"><span class="name">Камуфляж седины</span><span class="dots"></span><span class="price">1 100 ₽</span></div>
+        <div class="item"><span class="name">Стрижка отцов и сына</span><span class="dots"></span><span class="price">2 600 ₽</span></div>
+        <div class="item"><span class="name">Детская стрижка (до 12)</span><span class="dots"></span><span class="price">1 000 ₽</span></div>
+        <p class="note">Все стрижки — с мытьём головы, укладкой и парой честных советов, которые не всегда приятно слышать.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="команда" aria-label="Команда">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="num">02</span><h2>Руки, которым можно верить</h2></div>
+      <div class="team">
+        <article class="barber reveal">
+          <div class="plate"><img class="photo" src="img/team-1.jpg" alt="Даниил за работой — стрижка машинкой под зеркало в отражении" loading="lazy"></div>
+          <h3>Даниил</h3>
+          <p class="role">топ-барбер · fade-мастер</p>
+          <p>Коронный приём — просадка на ноль за 11 минут. Умеет слушать: и что ты рассказываешь, и что молчишь.</p>
+        </article>
+        <article class="barber reveal">
+          <div class="plate"><img class="photo" src="img/team-2.jpg" alt="Артём — барбер с машинкой за работой в кресле" loading="lazy"></div>
+          <h3>Артём</h3>
+          <p class="role">бородач · опасная бритва</p>
+          <p>Бреет так, что хочется выйти с ним на дуэль — просто чтобы ещё раз почувствовать вес момента.</p>
+        </article>
+        <article class="barber reveal">
+          <div class="plate"><img class="photo" src="img/team-3.jpg" alt="Опасная бритва в работе — контур виска под лампой" loading="lazy"></div>
+          <h3>Марк</h3>
+          <p class="role">старая школа · классика</p>
+          <p>Стрижёт так, как делали в парикмахерских, где звали по отчеству. Чай, кресло и 40 минут полного затишья.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="галерея" aria-label="Галерея работ">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="num">03</span><h2>Работы говорят молча</h2></div>
+      <div class="gallery">
+        <figure class="shot reveal"><img class="ph" src="img/work-2.jpg" alt="Винтажный интерьер барбершопа с креслами и зеркалами" loading="lazy"><figcaption class="cap">Наши кресла · интерьер</figcaption></figure>
+        <figure class="shot reveal"><img class="ph" src="img/work-4.jpg" alt="Витрина барбершопа с фирменным шестом" loading="lazy"><figcaption class="cap">Витрина · символ профессии</figcaption></figure>
+        <figure class="shot reveal"><img class="ph" src="img/work-3.jpg" alt="Стрижка с гребнем, вид со спины" loading="lazy"><figcaption class="cap">Работа гребнем · детально</figcaption></figure>
+        <figure class="shot reveal"><img class="ph" src="img/work-6.jpg" alt="Барбер заканчивает стрижку, вид со спины клиента" loading="lazy"><figcaption class="cap">Финиш · пара движений</figcaption></figure>
+        <figure class="shot reveal"><img class="ph" src="img/work-7.jpg" alt="Оформление бороды ножницами" loading="lazy"><figcaption class="cap">Борода · без спешки</figcaption></figure>
+        <figure class="shot reveal"><img class="ph" src="img/work-5.jpg" alt="Уличный парикмахер в работе сутра" loading="lazy"><figcaption class="cap">Уличная школа · живой стиль</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="мудрость" aria-label="Шутки и факты">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="num">04</span><h2>Пока ждёшь своего времени</h2></div>
+      <div class="buffet">
+        <article class="ticket red reveal">
+          <span class="tag">Шутка №1</span>
+          <p class="quote" id="joke">Клиент: «Сделай как в 90-е». Барбер: «Уточните: каре или налоговая».</p>
+          <button id="joke-btn" type="button">Ещё шутка</button>
+          <span class="counter" id="joke-count">1 / 6</span>
+        </article>
+        <article class="ticket blue reveal">
+          <span class="tag">Философия головы</span>
+          <p class="quote" id="fact">Волосы — мёртвый белок, кератин без единой живой клетки. Но именно причёска больше всего убеждает нас, что мы живые.</p>
+          <button id="fact-btn" type="button">Ещё факт</button>
+          <span class="counter" id="fact-count">1 / 6</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="contacts" id="контакты" aria-label="Контакты">
+    <div class="wrap grid">
+      <div>
+        <div class="sec-head reveal"><span class="num">05</span><h2>Приходи</h2></div>
+        <dl>
+          <dt>Адрес</dt><dd>ул. Стрижёва, 7, Тверь</dd>
+          <dt>Телефон</dt><dd><a href="tel:+79001234567">+7 900 123-45-67</a></dd>
+          <dt>Telegram</dt><dd><a href="https://t.me/strizh_barber" rel="noopener">@strizh_barber</a></dd>
+          <dt>VK</dt><dd><a href="https://vk.com/strizh_barber" rel="noopener">vk.com/strizh_barber</a></dd>
+        </dl>
+      </div>
+      <div class="hours">
+        <h3 style="font-size:20px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Часы</h3>
+        <p>пн–пт · 10:00–21:00<br>сб · 10:00–20:00<br>вс · 11:00–18:00</p>
+        <p style="margin-top:16px">Последняя стрижка за час до закрытия — ноги уважаем, себя тоже.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 СТРИЖ · Барбершоп в Твери</span>
+    <span>Сайт с характером — как и обладатель хорошей причёски</span>
+    <span style="width:100%">Фото: Wikimedia Commons и Flickr (свободные лицензии, CC BY/BY-SA/PDM) — заглушки для шаблона, замените на свои</span>
+  </div>
+</footer>
+
+<script>
+  // Появление секций по скроллу
+  (function(){
+    const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const els=document.querySelectorAll(".reveal");
+    if(reduce||!("IntersectionObserver" in window)){
+      els.forEach(el=>el.classList.add("in"));return;
+    }
+    // каскад: плитки внутри одной сетки появляются по очереди
+    document.querySelectorAll(".team,.gallery,.buffet").forEach(grid=>{
+      grid.querySelectorAll(":scope > .reveal").forEach((el,i)=>{
+        el.style.transitionDelay=(i*80)+"ms";
+      });
+    });
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}
+      });
+    },{threshold:.15,rootMargin:"0px 0px -40px"});
+    els.forEach(el=>io.observe(el));
+  })();
+
+  const jokes=[
+    "Клиент: «Сделай как в 90-е». Барбер: «Уточните: каре или налоговая».",
+    "Почему барберы редко путаются в человеках? Потому что привыкли брать за волосы любую историю.",
+    "«Сделай покороче, но так, чтобы долго ходить». — «Хорошо: стригу раз в полгода, приходите сегодня».",
+    "Спасибо, что вы здесь. Шесть человек в пуле, и все шесть — личности.",
+    "Лысина — не потеря волос. Это выход из причёски в само измерение.",
+    "«Волосы дыбом» — единственная стрижка, которую мы сделать не можем."
+  ];
+  const facts=[
+    "Волосы — мёртвый белок, кератин без единой живой клетки. Но именно причёска больше всего убеждает нас, что мы живые.",
+    "В Японии эпохи Эдо отрезание самураю хвоя (chonmage) считалось позором страшнее смерти: форма головы была формой чести.",
+    "Мы никогда не видим свои волосы целиком: растущая половина всегда спрятана в коже. Человек, знакомый сам с собой наполовину, — уже классика.",
+    "Около 150 000 волос на голове — и каждый заперт в собственном цикле жизни, отдыха и смерти. Демократии не получилось.",
+    "Волосы один из самых прочных белков природы: нить толщиной в волос выдерживает груз до 100 г. Хрупкость всегда относительна.",
+    "Слово «барбер» — от латинского barba, «борода». Значит, каждая стрижка — это наследие Рима, оплаченное по прайсу."
+  ];
+  function rotator(list,quoteEl,btnId,countId){
+    let i=0;const label=btnId==="joke-btn"?"Шутка №":"Факт №";
+    document.getElementById(btnId).addEventListener("click",()=>{
+      i=(i+1)%list.length;
+      document.getElementById(quoteEl).textContent=list[i];
+      document.getElementById(countId).textContent=(i+1)+" / "+list.length;
+      document.getElementById(quoteEl).closest(".ticket").querySelector(".tag").textContent=label+(i+1);
+    });
+  }
+  rotator(jokes,"joke","joke-btn","joke-count");
+  rotator(facts,"fact","fact-btn","fact-count");
+</script>
+</body>
+</html>
